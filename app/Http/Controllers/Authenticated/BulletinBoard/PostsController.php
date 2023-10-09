@@ -8,6 +8,7 @@ use App\Models\Categories\MainCategory;
 use App\Models\Categories\SubCategory;
 use App\Models\Posts\Post;
 use App\Models\Posts\PostComment;
+use App\Models\Posts\PostSubCategory;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
@@ -41,13 +42,14 @@ class PostsController extends Controller
 
     public function postDetail($post_id){
         $post = Post::with('user', 'postComments')->findOrFail($post_id);
+        // dd($post);
         return view('authenticated.bulletinboard.post_detail', compact('post'));
     }
 
     public function postInput(){
-        $main_categories = MainCategory::get();
+        $main_categories = MainCategory::with('subCategories')->get();
         $sub_categories = SubCategory::get();
-        // dd($main_categories);
+        // dd($sub_categories);
         return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
     }
 
@@ -57,10 +59,17 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        // $aaa = $request->post_category_id;
+        // dd($aaa);
+        $subPost = PostSubCategory::create([
+            'post_id' => $post->id,
+            'sub_category_id' => 1
+        ]);
+        // dd($subPost);
         return redirect()->route('post.show');
     }
 
-    public function postEdit(Request $request){
+    public function postEdit(PostFormRequest $request){
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,
@@ -83,7 +92,7 @@ class PostsController extends Controller
         ]);
         return redirect()->route('post.input');
     }
-    public function commentCreate(Request $request){
+    public function commentCreate(PostFormRequest $request){
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),

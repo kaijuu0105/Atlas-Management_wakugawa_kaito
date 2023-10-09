@@ -9,7 +9,7 @@
         @foreach($main_categories as $main_category)
           <optgroup label="{{ $main_category->main_category }}">
             @foreach($sub_categories as $sub_category)
-              <option lavel="{{ $sub_category->main_category_id }}">{{ $sub_category->sub_category}}</option> 
+              <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category}}</option> 
             @endforeach
           </optgroup>
         @endforeach
