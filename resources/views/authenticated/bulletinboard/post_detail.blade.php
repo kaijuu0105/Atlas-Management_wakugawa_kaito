@@ -21,7 +21,7 @@
             <span>{{ $post->user->under_name }}</span>
             さん
           </p>
-          <span class="ml-5">{{ $post->created_at }}</span>
+          <span class="ml-5">{{ $post->updated_at }}</span>
         </div>
         @if($errors->first('post_title'))
           <span class="error_message">{{ $errors->first('post_title') }}</span>

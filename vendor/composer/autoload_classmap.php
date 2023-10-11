@@ -44,6 +44,7 @@ return array(
     'App\\Models\\Posts\\Like' => $baseDir . '/app/Models/Posts/Like.php',
     'App\\Models\\Posts\\Post' => $baseDir . '/app/Models/Posts/Post.php',
     'App\\Models\\Posts\\PostComment' => $baseDir . '/app/Models/Posts/PostComment.php',
+    'App\\Models\\Posts\\PostSubCategory' => $baseDir . '/app/Models/Posts/PostSubCategory.php',
     'App\\Models\\Users\\Subjects' => $baseDir . '/app/Models/Users/Subjects.php',
     'App\\Models\\Users\\User' => $baseDir . '/app/Models/Users/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

@@ -19,7 +19,8 @@ class PostsController extends Controller
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
-        // \Debugbar::info('$categories='.$categories); 
+        // dd($categories);
+        $subCategories = SubCategory::get();
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
@@ -37,7 +38,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories','subCategories', 'like', 'post_comment'));
     }
 
     public function postDetail($post_id){
@@ -48,9 +49,9 @@ class PostsController extends Controller
 
     public function postInput(){
         $main_categories = MainCategory::with('subCategories')->get();
-        $sub_categories = SubCategory::get();
+        // $sub_categories = SubCategory::get();
         // dd($sub_categories);
-        return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
+        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
     public function postCreate(PostFormRequest $request){
