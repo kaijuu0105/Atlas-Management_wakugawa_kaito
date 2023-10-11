@@ -18,9 +18,10 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
+        $categories = MainCategory::with('subCategories')->get();
         // dd($categories);
         $subCategories = SubCategory::get();
+        // dd($subCategories);
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){

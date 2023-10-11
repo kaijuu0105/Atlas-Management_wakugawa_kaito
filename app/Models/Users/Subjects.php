@@ -15,7 +15,8 @@ class Subjects extends Model
         'subject'
     ];
 
+    // 多対多リレーション
     public function users(){
-        return $this->belongsTo('App\Models\Users\User');// リレーションの定義
+        return $this->belongsToMany('App\Models\Users\User','subject_users','subject_id','user_id');// リレーションの定義
     }
 }
