@@ -95,6 +95,8 @@ class PostsController extends Controller
         return redirect()->route('post.input');
     }
     public function commentCreate(PostFormRequest $request){
+        // $aaa = $request->post_id;
+        // dd($aaa);
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
