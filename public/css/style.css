@@ -46,6 +46,10 @@ li{
 .past-day{
   background:#EEE;
 }
+.past-days{
+  background:#EEE;
+  /* pointer-events: none; */
+}
 .calendar-td{
   min-width:100px;
 }

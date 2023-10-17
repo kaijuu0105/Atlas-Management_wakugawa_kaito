@@ -17,13 +17,39 @@ use Auth;
 class PostsController extends Controller
 {
     public function show(Request $request){
+        // dd($request);
         $posts = Post::with('user', 'postComments')->get();
+        $post_id = Post::find('id');
+        // dd($post_id);
+
+        //////////////いいねカウント//////////////////////
+        $post_ids = Post::pluck('id');
+        $likeCounts = [];
+
+        foreach ($post_ids as $post_id) {
+            $like = new Like();
+            $likeCount = $like->likeCounts($post_id);
+            $likeCounts[$post_id] = $likeCount;
+        }
+        //////////////////////////////////////////////
+        ///////////////////////////////////////////////////
+        $post_ids = Post::pluck('id');
+        $commentCounts = [];
+
+        foreach ($post_ids as $post_id) {
+            $post_comment = new PostComment;
+            $commentCount = $post_comment->commentCounts($post_id);
+            $commentCounts[$post_id] = $commentCount;
+        }
+        //////////////////////////////////////////////////////
+
         $categories = MainCategory::with('subCategories')->get();
         // dd($categories);
         $subCategories = SubCategory::get();
         // dd($subCategories);
-        $like = new Like;
-        $post_comment = new Post;
+        // $like = new Like;
+        
+
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
@@ -39,7 +65,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories','subCategories', 'like', 'post_comment'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories','subCategories', 'like','likeCounts', 'post_comment','commentCounts'));
     }
 
     public function postDetail($post_id){
@@ -121,7 +147,6 @@ class PostsController extends Controller
     public function postLike(Request $request){
         $user_id = Auth::id();
         $post_id = $request->post_id;
-
         $like = new Like;
 
         $like->like_user_id = $user_id;
