@@ -21,6 +21,7 @@
       <form action="/delete/calendar" method="post" id="deleteParts">
         <p id="modal_reserve_parts"></p>
         <p id="modal_values"></p>
+        <p>上記の予約をキャンセルしてもよろしいですか？</p>
         <!-- input fromが入力されていないと内容も一緒に送れない -->
         <input type="hidden" name="getPart" id="modal_reserve_part" form="deleteParts">
         <input type="hidden" name="getData" id="modal_value" form="deleteParts">
