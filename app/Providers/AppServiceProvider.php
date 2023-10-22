@@ -3,6 +3,7 @@
 namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,11 +23,11 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        // Validator::extend('katakana', function ($attribute, $value, $parameters, $validator) {
-        //     // カタカナの正規表現パターンを使用して検証
-        //     return preg_match('/^[\p{Katakana}\s]+$/u', $value);
-        // });
+    {  
+        // カタカナのバリデーションを追加カスタム
+        Validator::extend('kana', function ($attribute, $value, $parameters, $validator) {
+            return preg_match('/[ァ-ヴー]+/u', $value);
+        });
 
         $this->registerPolicies();
         Gate::define('admin', function($user){

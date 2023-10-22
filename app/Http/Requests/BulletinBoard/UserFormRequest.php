@@ -26,9 +26,9 @@ class UserFormRequest extends FormRequest
         return [
             'over_name' => 'string|max:10',
             'under_name' => 'string|max:10',
-            'over_name_kana' => 'string|max:30',
-            'under_name_kana' => 'string|max:30',
-            'mail_address' => 'email|max:100|unique:user,mail_address',
+            'over_name_kana' => 'string|kana|max:30',
+            'under_name_kana' => 'string|kana|max:30',
+            'mail_address' => 'email|max:100|unique:users,mail_address',
             'birth_day' => 'date|before_or_equal:2023-10-25',
             'password' => 'required|alpha_num|min:8|max:30|confirmed',
             'password_confirmation' => 'required|alpha_num|min:8|max:20',
