@@ -7,7 +7,7 @@ $(function () {
       $('.js-modal').fadeIn();
       // 押されたボタンから投稿内容を取得し変数へ格納
       var reserve_part = $(this).attr('reservePart');
-      // 押されたボタンから投稿のidを取得し変数へ格納（どの投稿を編集するか特定するのに必要な為）
+      // 押されたボタンから投稿のidを取得し変数へ格納（どの予約をキャンセルするか特定するのに必要な為）
       var value = $(this).attr('value');
       var part = $(this).attr('part');
   

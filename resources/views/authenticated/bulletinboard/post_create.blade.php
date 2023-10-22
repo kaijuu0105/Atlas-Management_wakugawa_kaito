@@ -39,6 +39,9 @@
   <div class="w-25 ml-auto mr-auto">
     <div class="category_area mt-5 p-5">
       <div class="">
+        @if($errors->first('main_category_name'))
+          <span class="error_message">{{ $errors->first('main_category_name') }}</span>
+        @endif
         <p class="m-0">メインカテゴリー</p>
           <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">
             <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
@@ -48,6 +51,12 @@
       </div>
             <!-- サブカテゴリー追加 -->
       <div class="">
+        @if($errors->first('main_category_id'))
+          <span class="error_message">{{ $errors->first('main_category_id') }}</span>
+        @endif
+        @if($errors->first('sub_category_name'))
+          <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
+        @endif
         <p class="m-0">サブカテゴリー</p>
           <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryRequest">
             <select name="main_category_id">

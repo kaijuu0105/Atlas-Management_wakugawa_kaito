@@ -37,13 +37,13 @@ class CalendarWeekDay{
 
     $html[] = '<div class="text-left">';
     if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">1部' .$one_limit. '</p>';
+      $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]) . '" class="">1部</a><p class="day_part m-0 pt-1">' .$one_limit. '</p>';
     }
     if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部' .$two_limit. '</p>';
+      $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]) . '" class="">2部</a><p class="day_part m-0 pt-1">' .$two_limit. '</p>';
     }
     if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部' .$three_limit. '</p>';
+      $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]) . '" class="">3部</a><p class="day_part m-0 pt-1">' .$three_limit. '</p>';
     }
     $html[] = '</div>';
 

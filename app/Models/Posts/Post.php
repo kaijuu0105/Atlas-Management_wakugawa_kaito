@@ -22,9 +22,16 @@ class Post extends Model
         return $this->hasMany('App\Models\Posts\PostComment');
     }
 
+    // 多対多リレーション
+    // コントローラーでリレーション先を呼び出す時の名前subCategories
     public function subCategories(){
-        return $this->belongsTo('App\Models\Categories\SubCaregory');// リレーションの定義
+        return $this->belongsToMany('App\Models\Categories\SubCategory','post_sub_categories','post_id','sub_category_id');// リレーションの定義
     }
+
+    // public function PostSubCategories(){
+    //     return $this->belongsTo('App\Models\Posts\PostSubCaregory');// リレーションの定義
+    // }
+
 
     // コメント数
     public function commentCounts($post_id){

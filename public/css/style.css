@@ -237,3 +237,28 @@ li{
 .subject_inner{
   display:none;
 }
+
+.subCategory{
+  display: none;
+}
+
+.mainCategory_conditions {
+  position: relative;
+}
+.amainCategory_conditions::after {
+  border-right: solid 2px #fff;
+  border-top: solid 2px #fff;
+  content: "";
+  display: block;
+  height: 8px;
+  position: absolute;
+  right: 25px;
+  top: 38%;
+  transform: rotate(135deg);
+  transition: transform .3s ease-in-out, top .3s ease-in-out;
+  width: 8px;
+}
+.mainCategory_conditions.open::after {
+  top: 45%;
+  transform: rotate(-45deg);
+}

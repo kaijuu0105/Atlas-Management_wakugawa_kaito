@@ -12,13 +12,15 @@ use App\Models\Posts\PostSubCategory;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\BulletinBoard\CategoryFormRequest;
+use App\Http\Requests\BulletinBoard\SubCategoryFormRequest;
 use Auth;
 
 class PostsController extends Controller
 {
     public function show(Request $request){
         // dd($request);
-        $posts = Post::with('user', 'postComments')->get();
+        $posts = Post::with('user', 'postComments')->orderBy('updated_at','desc')->get();
         $post_id = Post::find('id');
         // dd($post_id);
 
@@ -32,7 +34,7 @@ class PostsController extends Controller
             $likeCounts[$post_id] = $likeCount;
         }
         //////////////////////////////////////////////
-        ///////////////////////////////////////////////////
+        /////////////コメントカウント///////////////////
         $post_ids = Post::pluck('id');
         $commentCounts = [];
 
@@ -47,23 +49,39 @@ class PostsController extends Controller
         // dd($categories);
         $subCategories = SubCategory::get();
         // dd($subCategories);
-        // $like = new Like;
         
 
         if(!empty($request->keyword)){
+            $sub_category = SubCategory::where('sub_category', $request->keyword)->value('id');
+            // dd($sub_category);
+            if(!empty($sub_category)){
+            $post_id = PostSubCategory::where('sub_category_id',$sub_category)->pluck('post_id');
+            $posts = Post::with('user', 'postComments')->whereIn('id', $post_id)->orderBy('updated_at','desc')->get();
+            // dd($posts);
+            }else{
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
-            ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
+            ->orWhere('post', 'like', '%'.$request->keyword.'%')->orderBy('updated_at','desc')->get();
+            }
         }else if($request->category_word){
+            // dd($request);
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            // dd($sub_category);
+            $sub_category_id = SubCategory::where('sub_category',$sub_category)->pluck('id');
+            // dd($sub_category_id);
+            $post_id = PostSubCategory::where('sub_category_id',$sub_category_id)->pluck('post_id');
+            // dd($post_id);
+            
+            $posts = Post::with('user', 'postComments')->whereIn('id', $post_id)->orderBy('updated_at','desc')->get();
+            // dd($posts);
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
+            // dd($likes);
             $posts = Post::with('user', 'postComments')
-            ->whereIn('id', $likes)->get();
+            ->whereIn('id', $likes)->orderBy('updated_at','desc')->get();
         }else if($request->my_posts){
             $posts = Post::with('user', 'postComments')
-            ->where('user_id', Auth::id())->get();
+            ->where('user_id', Auth::id())->orderBy('updated_at','desc')->get();
         }
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories','subCategories', 'like','likeCounts', 'post_comment','commentCounts'));
     }
@@ -87,11 +105,11 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
-        // $aaa = $request->post_category_id;
-        // dd($aaa);
+        $sub_category = $request->post_category_id;
+        // dd($sub_category);
         $subPost = PostSubCategory::create([
             'post_id' => $post->id,
-            'sub_category_id' => 1
+            'sub_category_id' => $sub_category
         ]);
         // dd($subPost);
         return redirect()->route('post.show');
@@ -109,15 +127,20 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
-    public function mainCategoryCreate(PostFormRequest $request){
+    public function mainCategoryCreate(CategoryFormRequest $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
-    public function subCategoryCreate(PostFormRequest $request){
-        SubCategory::create([
-            'main_category_id' => $request->main_category_id,
-            'sub_category' => $request->sub_category_name
-        ]);
+    public function subCategoryCreate(SubCategoryFormRequest $request){
+        // dd($request);
+        $main_category_id = $request->main_category_id;
+        // 応急処置でif使用　バリデーションで解決する方法を考える
+        // if($main_category_id != "none"){
+            SubCategory::create([
+                'main_category_id' => $main_category_id,
+                'sub_category' => $request->sub_category_name
+            ]);
+        // }
         return redirect()->route('post.input');
     }
     public function commentCreate(PostFormRequest $request){

@@ -19,12 +19,18 @@
         <div class="register_form">
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
+              @if($errors->first('over_name'))
+                <span class="error_message">{{ $errors->first('over_name') }}</span>
+              @endif
               <label class="d-block m-0" style="font-size:13px">姓</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
               </div>
             </div>
             <div class="" style="width:140px">
+              @if($errors->first('under_name'))
+                <span class="error_message">{{ $errors->first('under_name') }}</span>
+              @endif
               <label class=" d-block m-0" style="font-size:13px">名</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
@@ -33,12 +39,18 @@
           </div>
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
+              @if($errors->first('over_name_kana'))
+                <span class="error_message">{{ $errors->first('over_name_kana') }}</span>
+              @endif
               <label class="d-block m-0" style="font-size:13px">セイ</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana">
               </div>
             </div>
             <div class="" style="width:140px">
+              @if($errors->first('under_name_kana'))
+                <span class="error_message">{{ $errors->first('under_name_kana') }}</span>
+              @endif
               <label class="d-block m-0" style="font-size:13px">メイ</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana">
@@ -46,6 +58,9 @@
             </div>
           </div>
           <div class="mt-3">
+            @if($errors->first('mail_address'))
+              <span class="error_message">{{ $errors->first('mail_address') }}</span>
+            @endif
             <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
             <div class="border-bottom border-primary">
               <input type="mail" class="w-100 border-0 mail_address" name="mail_address">
@@ -61,24 +76,12 @@
           <label style="font-size:13px">その他</label>
         </div>
         <div class="mt-3">
+          @if($errors->first('birth_day'))
+            <span class="error_message">{{ $errors->first('birth_day') }}</span>
+          @endif
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
           <select class="old_year" name="old_year">
             <option value="none">-----</option>
-            <option value="1985">1985</option>
-            <option value="1986">1986</option>
-            <option value="1987">1987</option>
-            <option value="1988">1988</option>
-            <option value="1989">1989</option>
-            <option value="1990">1990</option>
-            <option value="1991">1991</option>
-            <option value="1992">1992</option>
-            <option value="1993">1993</option>
-            <option value="1994">1994</option>
-            <option value="1995">1995</option>
-            <option value="1996">1996</option>
-            <option value="1997">1997</option>
-            <option value="1998">1998</option>
-            <option value="1999">1999</option>
             <option value="2000">2000</option>
             <option value="2001">2001</option>
             <option value="2002">2002</option>
@@ -90,6 +93,19 @@
             <option value="2008">2008</option>
             <option value="2009">2009</option>
             <option value="2010">2010</option>
+            <option value="2010">2011</option>
+            <option value="2010">2012</option>
+            <option value="2010">2013</option>
+            <option value="2010">2014</option>
+            <option value="2010">2015</option>
+            <option value="2010">2016</option>
+            <option value="2010">2017</option>
+            <option value="2010">2018</option>
+            <option value="2010">2019</option>
+            <option value="2010">2020</option>
+            <option value="2010">2021</option>
+            <option value="2010">2022</option>
+            <option value="2010">2023</option>
           </select>
           <label style="font-size:13px">年</label>
           <select class="old_month" name="old_month">
@@ -142,7 +158,7 @@
             <option value="30">30</option>
             <option value="31">31</option>
           </select>
-          <label style="font-size:13px">月</label>
+          <label style="font-size:13px">日</label>
         </div>
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">役職</label>
@@ -165,15 +181,21 @@
           @endforeach
         </div>
         <div class="mt-3">
+          @if($errors->first('password'))
+            <span class="error_message">{{ $errors->first('password') }}</span>
+          @endif
           <label class="d-block m-0" style="font-size:13px">パスワード</label>
           <div class="border-bottom border-primary">
             <input type="password" class="border-0 w-100 password" name="password">
           </div>
         </div>
         <div class="mt-3">
+          @if($errors->first('password_confirmation'))
+            <span class="error_message">{{ $errors->first('password_confirmation') }}</span>
+          @endif
           <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
           <div class="border-bottom border-primary">
-            <input type="password" class="border-0 w-100 password_confirmation" name="password">
+            <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation">
           </div>
         </div>
         <div class="mt-5 text-right">

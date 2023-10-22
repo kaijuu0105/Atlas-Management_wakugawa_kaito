@@ -18,7 +18,13 @@ class SubCategory extends Model
         return $this->belongsTo('App\Models\Categories\MainCaregory');// リレーションの定義
     }
 
-    public function posts(){
-        return $this->hasMany('App\Models\Posts\Post');// リレーションの定義
+    // public function postsSubcategory(){
+    //     return $this->hasMany('App\Models\Posts\Post');// リレーションの定義
+    // }
+
+    // 多対多リレーション
+    // コントローラーでリレーション先を呼び出す時の名前post
+    public function post(){
+        return $this->belongsToMany('App\Models\Posts\Post','post_sub_categories','sub_category_id','post_id');// リレーションの定義
     }
 }
