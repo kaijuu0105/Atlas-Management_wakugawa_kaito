@@ -17,34 +17,40 @@ class CalendarWeekDay{
   }
 
   function render(){
-    return '<p class="day">' . $this->carbon->format("j") . '日</p>';
+    return '<p class="day calendar-day">' . $this->carbon->format("j") . '日</p>';
   }
 
   function everyDay(){
     return $this->carbon->format("Y-m-d");
   }
 
+  // $ymdには日付が入っているいる（2023-10-01）
   function dayPartCounts($ymd){
     $html = [];
-    $one_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
-    $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
-    $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+    $one_part_reserve = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->value('id');
+    $one_part = ReserveSettingUser::where('reserve_setting_id', $one_part_reserve)->count('reserve_setting_id');
+    // dd($one_part);
+    if(empty($one_part)){
+      $one_part = 0;
+    }
 
-    // 予約のキャパシティを取得
-    $one_limit = ReserveSettings::where('setting_reserve', $ymd)->where('setting_part', '1')->value('limit_users');
-    $two_limit = ReserveSettings::where('setting_reserve', $ymd)->where('setting_part', '2')->value('limit_users');
-    $three_limit = ReserveSettings::where('setting_reserve', $ymd)->where('setting_part', '3')->value('limit_users');
+    $two_part_reserve = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->value('id');
+    $two_part = ReserveSettingUser::where('reserve_setting_id', $two_part_reserve)->count('reserve_setting_id');
+    if(empty($two_part)){
+      $two_part = 0;
+    }
 
-    $html[] = '<div class="text-left">';
-    if($one_part){
-      $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]) . '" class="">1部</a><p class="day_part m-0 pt-1">' .$one_limit. '</p>';
+    $three_part_reserve = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->value('id');
+    $three_part = ReserveSettingUser::where('reserve_setting_id', $three_part_reserve)->count('reserve_setting_id');
+    // dd($one_part);
+    if(empty($three_part)){
+      $three_part = 0;
     }
-    if($two_part){
-      $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]) . '" class="">2部</a><p class="day_part m-0 pt-1">' .$two_limit. '</p>';
-    }
-    if($three_part){
-      $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]) . '" class="">3部</a><p class="day_part m-0 pt-1">' .$three_limit. '</p>';
-    }
+
+    $html[] = '<div class="p-text-left text-left">';  
+    $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]) . '" class="a-day_part1">1部</a><p class="day_part1 m-0 pt-1">' .$one_part. '</p>';
+    $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]) . '" class="a-day_part2">2部</a><p class="day_part2 m-0 pt-1">' .$two_part. '</p>';
+    $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]) . '" class="a-day_part3">3部</a><p class="day_part3 m-0 pt-1">' .$three_part. '</p>';
     $html[] = '</div>';
 
     return implode("", $html);

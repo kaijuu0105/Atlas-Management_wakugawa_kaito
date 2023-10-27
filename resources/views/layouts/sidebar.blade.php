@@ -19,17 +19,19 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><a href="{{ route('top.show') }}">トップ</a></p>
-      <p><a href="/logout">ログアウト</a></p>
-      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
-      <!-- 権限が4なら表示しない -->
-      @if(Auth::user()->role != 4)
-      <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-      <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
-      @endif
-      <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
-      @show
+      <div class="sidebar-container">
+        <p><a href="{{ route('top.show') }}"><img src="{{ asset('image/home.png') }}" width="25" height="25"><span class="sidebar-text">トップ</span></a></p>
+        <p><a href="/logout"><img src="{{ asset('image/logout.png') }}" width="20" height="20"><span class="sidebar-text">ログアウト</span></a></p>
+        <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}"><img src="{{ asset('image/reserve1.png') }}" width="25" height="25"><span class="sidebar-text">スクール予約</span></a></p>
+        <!-- 権限が4なら表示しない -->
+        @if(Auth::user()->role != 4)
+        <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}"><img src="{{ asset('image/reserve2.png') }}" width="25" height="25"><span class="sidebar-text">スクール予約確認</span></a></p>
+        <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}"><img src="{{ asset('image/reserve3.png') }}" width="25" height="25"><span class="sidebar-text">スクール枠登録</span></a></p>
+        @endif
+        <p><a href="{{ route('post.show') }}"><img src="{{ asset('image/post.png') }}" width="25" height="25"><span class="sidebar-text">掲示板<span></a></p>
+        <p><a href="{{ route('user.show') }}"><img src="{{ asset('image/user.png') }}" width="25" height="25"><span class="sidebar-text">ユーザー検索</span></a></p>
+        @show
+      </div>
     </div>
     <div class="main-container">
       @yield('content')

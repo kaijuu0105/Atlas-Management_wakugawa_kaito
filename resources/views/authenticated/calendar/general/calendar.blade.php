@@ -3,9 +3,9 @@
 @section('content')
 <div class="vh-100 pt-5" style="background:#ECF1F6;">
   <div class="border w-75 m-auto pt-5 pb-5" style="border-radius:5px; background:#FFF;">
-    <div class="w-75 m-auto border" style="border-radius:5px;">
+    <div class="m-auto calender-general" style="border-radius:5px;">
 
-      <p class="text-center">{{ $calendar->getTitle() }}</p>
+      <p class="text-center calendar-month">{{ $calendar->getTitle() }}</p>
       <div class="">
         {!! $calendar->render() !!}
       </div>
@@ -21,7 +21,6 @@
       <form action="/delete/calendar" method="post" id="deleteParts">
         <p id="modal_reserve_parts"></p>
         <p id="modal_values"></p>
-        <p>上記の予約をキャンセルしてもよろしいですか？</p>
         <!-- input fromが入力されていないと内容も一緒に送れない -->
         <input type="hidden" name="getPart" id="modal_reserve_part" form="deleteParts">
         <input type="hidden" name="getData" id="modal_value" form="deleteParts">

@@ -20,16 +20,18 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         // dd($request);
-        $posts = Post::with('user', 'postComments')->orderBy('updated_at','desc')->get();
+        // subCategoriesはpost_sub_categoryの中間テーブルを呼び出している
+        $posts = Post::with('user', 'postComments','subCategories')->orderBy('updated_at','desc')->get();
         $post_id = Post::find('id');
-        // dd($post_id);
+        // dd($posts);
 
         //////////////いいねカウント//////////////////////
         $post_ids = Post::pluck('id');
         $likeCounts = [];
 
         foreach ($post_ids as $post_id) {
-            $like = new Like();
+            $like = new Like;
+            // dd($like);
             $likeCount = $like->likeCounts($post_id);
             $likeCounts[$post_id] = $likeCount;
         }
@@ -87,8 +89,8 @@ class PostsController extends Controller
     }
 
     public function postDetail($post_id){
-        $post = Post::with('user', 'postComments')->findOrFail($post_id);
-        // dd($post);
+        $post = Post::with('user', 'postComments','subCategories')->findOrFail($post_id);
+        // dd($post_id);
         return view('authenticated.bulletinboard.post_detail', compact('post'));
     }
 

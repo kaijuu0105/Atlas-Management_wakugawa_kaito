@@ -10,7 +10,7 @@
       <p>性別 : @if($user->sex == 1)<span>男</span>@else<span>女</span>@endif</p>
       <p>生年月日 : <span>{{ $user->birth_day }}</span></p>
       @if($user->role == 4)
-      <div>選択科目 :
+      <div style="margin-bottom: 16px;">選択科目 :
         @foreach($user->subjects as $subject)
         <span>{{ $subject->subject }}</span>
         @endforeach
@@ -20,14 +20,15 @@
         <span class="subject_edit_btn">選択科目の編集</span>
         <div class="subject_inner">
           <form action="{{ route('user.edit') }}" method="post">
-            @foreach($subject_lists as $subject_list)
-            <div>
-              <label>{{ $subject_list->subject }}</label>
-              <input type="checkbox" name="subjects[]" value="{{ $subject_list->id }}">
-            </div>
-            @endforeach
+            <div class="subject_inners">
+              @foreach($subject_lists as $subject_list)
+              <div style="margin-right: 10px;">
+                <label>{{ $subject_list->subject }}</label>
+                <input type="checkbox" name="subjects[]" value="{{ $subject_list->id }}">
+              </div>
+              @endforeach
             @endif
-            <input type="submit" value="編集" class="btn btn-primary">
+            <input type="submit" value="登録" class="btn profile-regi-btn">
             <input type="hidden" name="user_id" value="{{ $user->id }}">
             {{ csrf_field() }}
           </form>

@@ -16,7 +16,7 @@ class CalendarView{
 
   public function render(){
     $html = [];
-    $html[] = '<div class="calendar text-center">';
+    $html[] = '<div class="admin-calendar text-center border">';
     $html[] = '<table class="table m-auto border">';
     $html[] = '<thead>';
     $html[] = '<tr>';
@@ -34,6 +34,7 @@ class CalendarView{
     $weeks = $this->getWeeks();
 
     foreach($weeks as $week){
+
       $html[] = '<tr class="'.$week->getClassName().'">';
       $days = $week->getDays();
       foreach($days as $day){
@@ -45,7 +46,9 @@ class CalendarView{
           $html[] = '<td class="border '.$day->getClassName().'">';
         }
         $html[] = $day->render();
+        $html[] = '<div class="aiueo">';
         $html[] = $day->dayPartCounts($day->everyDay());
+        $html[] = '</div>';
         $html[] = '</td>';
       }
       $html[] = '</tr>';

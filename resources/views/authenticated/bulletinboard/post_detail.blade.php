@@ -8,20 +8,23 @@
           <div>
           </div>
           @if(Auth::id() === $post->user_id)
-            <div>
-              <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-              <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
+            <div class="edit-delete-btn">
+              <span class="edit-btn edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+              <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="delete-btn" onclick="return confirm('削除してよろしいですか？')">削除</a>
             </div>
           @endif
         </div>
-
+        <div class="detail-subCategory">
+          @foreach($post->subCategories as $subCategory)
+            <p class="detail-post-subCategory">{{ $subCategory->sub_category }}</p>
+          @endforeach
+        </div>
         <div class="contributor d-flex">
-          <p>
+          <p class="aaa">
             <span>{{ $post->user->over_name }}</span>
             <span>{{ $post->user->under_name }}</span>
             さん
           </p>
-          <span class="ml-5">{{ $post->updated_at }}</span>
         </div>
         @if($errors->first('post_title'))
           <span class="error_message">{{ $errors->first('post_title') }}</span>
