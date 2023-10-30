@@ -26,8 +26,8 @@ class CalendarView{
     $html[] = '<th class="border">水</th>';
     $html[] = '<th class="border">木</th>';
     $html[] = '<th class="border">金</th>';
-    $html[] = '<th class="border">土</th>';
-    $html[] = '<th class="border">日</th>';
+    $html[] = '<th class="border" style="color: blue;">土</th>';
+    $html[] = '<th class="border" style="color: red;">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -41,7 +41,7 @@ class CalendarView{
         $toDay = $this->carbon->copy()->format("Y-m-d");
 
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="past-days border">';
+          $html[] = '<td class="past-days border '.$day->getClassName().'">';
         }else{
           $html[] = '<td class="border '.$day->getClassName().'">';
         }
@@ -60,7 +60,7 @@ class CalendarView{
           }
           if($day->everyDay()){
             if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-              $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px" >'. $part .'部参加</p>';
+              $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px;color: black;" >'. $part .'部参加</p>';
               $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
             }else{
               $html[] = '<button type="submit" class="js-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" part="'. $part .'" reservePart="'. $reservePart .'" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
@@ -74,7 +74,7 @@ class CalendarView{
         }else{
           if($day->everyDay()){
             if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-              $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px" >受付終了</p>';
+              $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px;color: black;" >受付終了</p>';
               $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
             }else{
             // Calendar WeekDayファイルのfunction selectPartの中身

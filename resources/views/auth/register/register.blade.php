@@ -180,14 +180,14 @@
               @endforeach
             </div>
         </div>
-        <div class="password">
+        <div class="register-password">
           <div class="mt-3">
             @if($errors->first('password'))
               <span class="error_message">{{ $errors->first('password') }}</span>
             @endif
             <label class="d-block m-0" style="font-size:13px">パスワード</label>
             <div class="border-bottom border-primary">
-              <input type="password" class="border-0 w-100 password" name="password">
+              <input type="password" class="border-0 w-100 password" name="password" >
             </div>
           </div>
           <div class="mt-3">
@@ -200,8 +200,8 @@
             </div>
           </div>
         </div>
-        <div class="mt-5 text-right">
-          <input type="submit" class="btn btn-primary register_btn" disabled value="新規登録" onclick="return confirm('登録してよろしいですか？')">
+        <div class="text-right" style="margin-top: 20px;">
+          <input type="submit" class="btn btn-primary register_btn" value="新規登録" onclick="return confirm('登録してよろしいですか？')">
         </div>
         <div class="text-center register-text">
           <a href="{{ route('loginView') }}">ログインはこちら</a>

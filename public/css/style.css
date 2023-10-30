@@ -102,11 +102,6 @@ label.text-role {
   margin-right: 40px;
 }
 
-.password {
-  margin-left: 8%;
-  width: 85%;
-}
-
 .register-text {
   margin-bottom: 10px;
 }
@@ -194,8 +189,7 @@ span.sidebar-text {
 
 input.btn.btn-primary {
   position: relative;
-  top: 20px;
-  left: 10%;
+  right: 7%;
 }
 
 p.text-center.calendar-month {
@@ -216,7 +210,7 @@ input.Regi.btn.btn-primary {
 }
 
 p.day {
-  margin-top: 10px;
+  margin-top: -5px;
 }
 
 .a-day_part {
@@ -229,12 +223,12 @@ p.day.calendar-day {
 
 a.a-day_part2 {
   position: relative;
-  bottom: 15px;
+  bottom: 22px;
 }
 
 a.a-day_part3 {
     position: relative;
-    bottom: 30px;
+    bottom: 44px;
 }
 
 p.day_part1.m-0.pt-1 {
@@ -243,26 +237,29 @@ p.day_part1.m-0.pt-1 {
   bottom: 29px;
   left: 78px;
   font-size: medium;
+  color: black;
 }
 
 p.day_part2.m-0.pt-1 {
   width: 0px;
   position: relative;
-  bottom: 44px;
-  left: 79px;
+  bottom: 51px;
+  left: 78px;
   font-size: medium;
+  color: black;
 }
 
 p.day_part3.m-0.pt-1 {
   width: 0px;
   position: relative;
-  bottom: 59px;
+  bottom: 73px;
   left: 78px;
   font-size: medium;
+  color: black;
 }
 
 .aiueo {
-  height: 17vh;
+  max-height: 85px;
 }
 
 .reserve-detail-tabale{
@@ -323,7 +320,7 @@ tr.reserve-users:nth-child(even) {
 
 table.table.calender-view-table {
   position: relative;
-  left: 25vh;
+  left: 16vh;
 }
 
 /* モーダル */
@@ -652,7 +649,6 @@ p.post-subCategory {
   flex-wrap:wrap;
   width: 1075px;
   margin:10px auto;
-  height:80vh;
   overflow: scroll;
   padding:10px;
   /* background:#FFF; */
@@ -709,14 +705,14 @@ p.post-subCategory {
   height: 10px;
   position: absolute;
   right: 6%;
-  bottom: 57%;
+  bottom: 71%;
   transform: rotateZ(135deg);
   transition: transform .3s ease-in-out, top .3s ease-in-out;
   width: 10px;
 }
 
 p.m-0.search_conditions.open::after{
-  top: 44%;
+  top: 28%;
   transform: rotateZ(-45deg);
 }
 /* 　 */

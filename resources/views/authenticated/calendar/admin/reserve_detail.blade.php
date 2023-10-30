@@ -6,13 +6,13 @@
     <p style="font-size: larger;"><span>{{ $date }}日</span><span class="ml-3">{{ $part }}部</span></p>
     <div class="h-75 border" style="background: white;">
       <table class="reserve-detail-tabale">
-        @foreach($reservePersons as $reservePerson)
-          <tbody class="reserve-detail-tbody">
-            <tr class="text-center reserve-detail-label" style="background: #03AAD2;color: white;">
-              <th style="margin-left: 10%;">ID</th>
-              <th style="width: 65%;position: relative;right: 8%;">名前</th>
-              <th style="margin-right: 18%;">場所</th>
-            </tr>
+        <tbody class="reserve-detail-tbody">
+          <tr class="text-center reserve-detail-label" style="background: #03AAD2;color: white;">
+            <th style="margin-left: 10%;">ID</th>
+            <th style="width: 65%;position: relative;right: 8%;">名前</th>
+            <th style="margin-right: 18%;">場所</th>
+          </tr>
+          @foreach($reservePersons as $reservePerson)
             @foreach($reservePerson->users as $user)
               @if($reservePerson->users)
               <tr class="reserve-users">
@@ -22,8 +22,8 @@
               </tr>
               @endif
             @endforeach
-          </tbody>
-        @endforeach
+          @endforeach
+        </tbody>      
       </table>
     </div>
   </div>

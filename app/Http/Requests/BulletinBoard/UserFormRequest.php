@@ -16,6 +16,7 @@ class UserFormRequest extends FormRequest
         return true;
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,10 +30,24 @@ class UserFormRequest extends FormRequest
             'over_name_kana' => 'string|kana|max:30',
             'under_name_kana' => 'string|kana|max:30',
             'mail_address' => 'email|max:100|unique:users,mail_address',
-            'birth_day' => 'date|before_or_equal:2023-10-25',
+            'birth_day' => 'before:today|date',
             'password' => 'required|alpha_num|min:8|max:30|confirmed',
             'password_confirmation' => 'required|alpha_num|min:8|max:20',
         ];
+    }
+
+    // 日付けの組み立て
+    public function getValidatorInstance()
+    {
+        if ($this->input('old_day') && $this->input('old_month') && $this->input('old_year'))
+        {
+            $birth_day = implode('-', $this->only(['old_year', 'old_month', 'old_day']));
+            $this->merge([
+                'birth_day' => $birth_day,
+            ]);
+        }
+
+        return parent::getValidatorInstance();
     }
 
     public function messages(){
@@ -51,7 +66,7 @@ class UserFormRequest extends FormRequest
             'mail_address.max' => '100文字以内で入力してください。',
             'mail_address.unique' => 'そのメールアドレスは既に登録されています。',
             'birth_day.date' => '有効な日付を入力してください。',
-            'birth_day.before_or_equal' => '有効な日付を入力してください。',
+            'birth_day.before' => '有効な日付を入力してください。',
             'password.alpha_num' => '英数字のみで入力してください。',
             'password.min' => '8文字以上で入力してください。',
             'password.max' => '30文字以内で入力してください。',

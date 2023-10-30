@@ -48,9 +48,9 @@ class CalendarWeekDay{
     }
 
     $html[] = '<div class="p-text-left text-left">';  
-    $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]) . '" class="a-day_part1">1部</a><p class="day_part1 m-0 pt-1">' .$one_part. '</p>';
-    $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]) . '" class="a-day_part2">2部</a><p class="day_part2 m-0 pt-1">' .$two_part. '</p>';
-    $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]) . '" class="a-day_part3">3部</a><p class="day_part3 m-0 pt-1">' .$three_part. '</p>';
+    $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]) . '" class="a-day_part1" style="color: #79cfe4;">1部</a><p class="day_part1 m-0 pt-1">' .$one_part. '</p>';
+    $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]) . '" class="a-day_part2" style="color: #79cfe4;">2部</a><p class="day_part2 m-0 pt-1">' .$two_part. '</p>';
+    $html[] ='<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]) . '" class="a-day_part3" style="color: #79cfe4;">3部</a><p class="day_part3 m-0 pt-1">' .$three_part. '</p>';
     $html[] = '</div>';
 
     return implode("", $html);
