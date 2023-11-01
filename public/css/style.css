@@ -15,6 +15,7 @@
 }
 
 .login-menu{
+  background: white;
   margin-bottom: 20%;
   border-radius: 15px;
 }
@@ -26,6 +27,7 @@
 /* 新規登録画面 */
 .register-menu{
   border-radius: 10px;
+  background: white;
 }
 
 .over-name {
@@ -187,7 +189,7 @@ span.sidebar-text {
   width:70%;
 }
 
-input.btn.btn-primary {
+input.btn.btn-primary.general-calendar-btn {
   position: relative;
   right: 7%;
 }
@@ -664,14 +666,15 @@ p.post-subCategory {
   border-radius: 10px;
   margin: 0px 5px 30px;
   padding: 20px;
+  filter: drop-shadow(2px 2px 2px gray);
 }
 
 .free_word {
   width: 75%;
-  height: 40px;
+  height: 3rem;
   background: rgb(224, 224, 224);
   border: none;
-  border-radius: 8px 8px 8px 8px;
+  border-radius: 8px;
   padding-left: 20px;
 
 }
@@ -683,6 +686,15 @@ p.post-subCategory {
   align-items: flex-start;
 }
 
+.select-name-id {
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  border-radius: 8px;
+  background: rgb(224, 224, 224);
+  padding-left: 1rem;
+}
+
 .birthday-time {
   margin-top: 15px;
   margin-bottom: 25px;
@@ -691,9 +703,44 @@ p.post-subCategory {
   align-items: flex-start;
 }
 
+.select-birthday-time {
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  border-radius: 8px;
+  background: rgb(224, 224, 224);
+  padding-left: 1rem;
+}
+
 .search_conditions span{
   cursor:pointer;
   position: relative;
+}
+
+select.engineer {
+  width: 8rem;
+  height: 2rem;
+  border: none;
+  border-radius: 8px;
+  background: rgb(224, 224, 224);
+  padding-left: 1rem;
+}
+
+input.search_btn {
+  width: 18rem;
+  height: 4vh;
+  background: #03AAD2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+input.reset_btn {
+  border: none;
+  color: #03AAD2;
+  position: relative;
+  left: 7rem;
+  margin-top: 2rem;
 }
 
 /* アコーディオン */
@@ -705,14 +752,14 @@ p.post-subCategory {
   height: 10px;
   position: absolute;
   right: 6%;
-  bottom: 71%;
+  bottom: 69%;
   transform: rotateZ(135deg);
   transition: transform .3s ease-in-out, top .3s ease-in-out;
   width: 10px;
 }
 
 p.m-0.search_conditions.open::after{
-  top: 28%;
+  top: 30%;
   transform: rotateZ(-45deg);
 }
 /* 　 */

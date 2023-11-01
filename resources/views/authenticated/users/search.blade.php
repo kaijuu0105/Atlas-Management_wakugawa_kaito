@@ -57,7 +57,7 @@
       </div>
     @endforeach
   </div>
-  <div class="search_area w-25 border">
+  <div class="search_area w-25">
     <div class="">
       <h4>検索</h4>
       <div>
@@ -65,14 +65,14 @@
       </div>
       <div class = "name-id">
         <lavel style="color: gray;margin-bottom: 0.5rem;">カテゴリ</lavel>
-        <select form="userSearchRequest" name="category">
+        <select form="userSearchRequest" name="category" class="select-name-id">
           <option value="name">名前</option>
           <option value="id">社員ID</option>
         </select>
       </div>
       <div class="birthday-time">
         <label style="color: gray;">並び替え</label>
-        <select name="updown" form="userSearchRequest">
+        <select name="updown" form="userSearchRequest" class="select-birthday-time">
           <option value="ASC">昇順</option>
           <option value="DESC">降順</option>
         </select>
@@ -81,13 +81,13 @@
         <p class="m-0 search_conditions" style="color: gray;"><span>検索条件の追加</span></p>
         <div class="search_conditions_inner">
           <div>
-            <label style="color: gray;">性別</label>
+            <label style="color: gray; display: block; margin-top: 0.8rem;">性別</label>
             <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
             <span>女</span><input type="radio" name="sex" value="2" form="userSearchRequest">
             <span>その他</span><input type="radio" name="sex" value="3" form="userSearchRequest">
           </div>
           <div>
-            <label style="color: gray;">権限</label>
+            <label style="color: gray; display: block; margin-top: 0.8rem;">権限</label>
             <select name="role" form="userSearchRequest" class="engineer">
               <option selected disabled>----</option>
               <option value="1">教師(国語)</option>
@@ -97,7 +97,7 @@
             </select>
           </div>
           <div class="selected_engineer">
-            <label style="color: gray;">選択科目</label>
+            <label style="color: gray; display: block; margin-top: 0.8rem;">選択科目</label>
             <span>国語</span><input type="checkbox" name="subject" value="1" form="userSearchRequest">
             <span>数学</span><input type="checkbox" name="subject" value="2" form="userSearchRequest">
             <span>英語</span><input type="checkbox" name="subject" value="3" form="userSearchRequest">
@@ -105,10 +105,10 @@
         </div>
       </div>
       <div>
-        <input type="reset" value="リセット" form="userSearchRequest">
+        <input type="submit" class="search_btn" name="search_btn" value="検索" form="userSearchRequest" style="margin-top: 0.5rem;">
       </div>
       <div>
-        <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+        <input type="reset" class="reset_btn" value="リセット" form="userSearchRequest">
       </div>
     </div>
     <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>

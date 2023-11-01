@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Oswald:wght@200&display=swap" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: #ECF1F6;">
   <header class="Atlas-Logo">
-    <h2><img src="image/atlas-black.png" width="210" height="77" alt="Atlas-Logo"></h2>
+    <h2><img src="{{ asset('image/atlas-black.png') }}" width="210" height="77" alt="Atlas-Logo"></h2>
   </header>
   <form action="{{ route('loginPost') }}" method="POST">
     <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">

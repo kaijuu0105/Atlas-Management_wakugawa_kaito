@@ -30,7 +30,7 @@ class UserFormRequest extends FormRequest
             'over_name_kana' => 'string|kana|max:30',
             'under_name_kana' => 'string|kana|max:30',
             'mail_address' => 'email|max:100|unique:users,mail_address',
-            'birth_day' => 'before:today|date',
+            'birth_day' => 'after:2000/01/01|before:today|date',
             'password' => 'required|alpha_num|min:8|max:30|confirmed',
             'password_confirmation' => 'required|alpha_num|min:8|max:20',
         ];
@@ -67,6 +67,7 @@ class UserFormRequest extends FormRequest
             'mail_address.unique' => 'そのメールアドレスは既に登録されています。',
             'birth_day.date' => '有効な日付を入力してください。',
             'birth_day.before' => '有効な日付を入力してください。',
+            'birth_day.after' => '2000年以降の生年月日を入力してください。',
             'password.alpha_num' => '英数字のみで入力してください。',
             'password.min' => '8文字以上で入力してください。',
             'password.max' => '30文字以内で入力してください。',
