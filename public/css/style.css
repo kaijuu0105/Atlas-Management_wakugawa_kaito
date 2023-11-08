@@ -752,14 +752,14 @@ input.reset_btn {
   height: 10px;
   position: absolute;
   right: 6%;
-  bottom: 69%;
+  bottom: 68%;
   transform: rotateZ(135deg);
   transition: transform .3s ease-in-out, top .3s ease-in-out;
   width: 10px;
 }
 
 p.m-0.search_conditions.open::after{
-  top: 30%;
+  top: 31%;
   transform: rotateZ(-45deg);
 }
 /* 　 */
